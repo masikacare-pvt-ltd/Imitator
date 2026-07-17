@@ -1,0 +1,219 @@
+.aboutSection {
+  padding-top: 120px;
+  padding-bottom: 80px;
+  margin-top: 40px;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.aboutVisualWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--c-bg);
+}
+
+/* Inner wrapper mimics the original img sizing: width:70% height:70% centered */
+.aboutImgInner {
+  position: relative;
+  width: 70%;
+  height: 70%;
+}
+
+.aboutCinematicFrame {
+  position: absolute;
+  inset: 40px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.acCorner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-color: rgba(0, 0, 0, 0.25);
+  border-style: solid;
+}
+
+.acTl { top: 0; left: 0; border-width: 1.5px 0 0 1.5px; }
+.acTr { top: 0; right: 0; border-width: 1.5px 1.5px 0 0; }
+.acBl { bottom: 0; left: 0; border-width: 0 0 1.5px 1.5px; }
+.acBr { bottom: 0; right: 0; border-width: 0 1.5px 1.5px 0; }
+
+.acDot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--c-accent);
+}
+
+.adTl { top: -2px; left: -2px; }
+.adBr { bottom: -2px; right: -2px; }
+
+.aboutAmbientGlow {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.02) 0%, transparent 60%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-glow 8s ease-in-out infinite alternate-reverse;
+}
+
+.aboutDataStream {
+  position: absolute;
+  top: 200px;
+  right: 20px;
+  font-family: var(--f-sans);
+  font-size: 0.55rem;
+  color: var(--c-text-secondary);
+  letter-spacing: 0.3em;
+  writing-mode: vertical-rl;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.aboutDataStream::before {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 40px;
+  background: var(--c-accent);
+  margin-bottom: 16px;
+}
+
+.hAboutCinematic {
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.aboutPremiumLine {
+  width: 40px;
+  height: 2px;
+  background: var(--c-accent);
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.aboutPremiumLine::after {
+  content: '';
+  position: absolute;
+  left: 50px;
+  top: 0;
+  width: 12px;
+  height: 2px;
+  background: var(--c-border);
+}
+
+.aboutDescText {
+  margin-top: 24px;
+  max-width: 500px;
+}
+
+.magneticWrap {
+  display: inline-block;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  border-radius: var(--r-pill);
+  font-family: var(--f-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transform: translateZ(0);
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  text-decoration: none;
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.96) !important;
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btnCompact {
+  padding: 12px 24px;
+  font-size: 0.75rem;
+}
+
+.btnSecondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--c-text-primary);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.6),
+    0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.btnSecondary::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #1a1a1a, #000000);
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: -1;
+}
+
+.btnSecondary:hover {
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.15),
+    0 0 20px rgba(0, 0, 0, 0.05);
+  letter-spacing: 0.1em;
+}
+
+.btnSecondary:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (max-width: 1024px) {
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutSection {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    margin-top: 20px;
+  }
+
+  .aboutCinematicFrame,
+  .aboutAmbientGlow,
+  .aboutDataStream {
+    display: none;
+  }
+}

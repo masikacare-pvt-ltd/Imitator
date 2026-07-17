@@ -1,0 +1,101 @@
+.mvSection {
+  padding: 160px 0;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 60px;
+}
+
+.mvWatermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--f-sans);
+  font-size: clamp(8rem, 18vw, 22rem);
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.015);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 0;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.mvCentered {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mvPremiumSvgWrap {
+  margin-bottom: 40px;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mvPremiumSvgWrap svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.mvPremiumLine {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(180deg, var(--c-accent), transparent);
+  margin: 0 auto 40px auto;
+}
+
+.mvSpinSlow {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: mvSpinSlow 30s linear infinite;
+}
+
+.mvSpinFastRev {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: mvSpinFastRev 20s linear infinite;
+}
+
+.wfAnimPulse {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: wf-pulse 2.5s infinite alternate ease-in-out;
+}
+
+.wfAnimGlow {
+  animation: wf-glow 2s infinite alternate ease-in-out;
+}
+
+.mvCinematicText {
+  font-family: var(--f-serif);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--c-text-primary);
+  max-width: 800px;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Heading helpers */
+.hAboutCinematic {
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+@media (max-width: 768px) {
+  .mvSection {
+    padding: 100px 0;
+  }
+}

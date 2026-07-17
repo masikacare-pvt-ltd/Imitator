@@ -1,0 +1,246 @@
+.workflowSection {
+  padding-bottom: 40px;
+}
+
+.workflowProcessContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  position: relative;
+  z-index: 2;
+  margin-top: 100px;
+  max-width: 1440px;
+}
+
+/* Pipeline */
+.advancedPipelineWrap {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pipeBase {
+  stroke: rgba(0, 0, 0, 0.08);
+  stroke-width: 1.5px;
+  fill: none;
+}
+
+.pipeBaseLight {
+  stroke: rgba(0, 0, 0, 0.03);
+  stroke-width: 1px;
+  fill: none;
+}
+
+.pipePulseMain {
+  stroke: url(#photon-gradient);
+  stroke-width: 3px;
+  fill: none;
+  stroke-dasharray: 30 100;
+  stroke-dashoffset: 130;
+  animation: photon-flow 4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 49, 27, 0.7));
+}
+
+.pipePulseFast {
+  stroke: var(--c-text-primary);
+  stroke-width: 1px;
+  fill: none;
+  stroke-dasharray: 4 12 2 20 8 100;
+  animation: pipeDash 15s linear infinite;
+  opacity: 0.4;
+}
+
+.pipePulseRev {
+  stroke: var(--c-accent);
+  stroke-width: 1.5px;
+  fill: none;
+  stroke-dasharray: 1 10 3 40 2 100;
+  animation: pipeDashRev 20s linear infinite;
+  opacity: 0.5;
+}
+
+.syncLine {
+  stroke: var(--c-text-primary);
+  stroke-width: 1px;
+  stroke-dasharray: 2 4;
+  opacity: 0.15;
+}
+
+.syncDotCore {
+  fill: var(--c-bg);
+  stroke: var(--c-accent);
+  stroke-width: 2px;
+  animation: wf-pulse-glow 2.5s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.syncDotRing {
+  fill: none;
+  stroke: var(--c-text-primary);
+  stroke-width: 1px;
+  stroke-dasharray: 4 6;
+  animation: wf-spin 8s linear infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+  opacity: 0.5;
+}
+
+/* Step */
+.workflowStep {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+
+.workflowStepIcon {
+  width: 72px;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--r-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--s-ambient);
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.workflowStep:hover .workflowStepIcon {
+  transform: translateY(-8px) scale(1.05);
+  border-color: rgba(255, 49, 27, 0.3);
+  box-shadow: 0 20px 40px rgba(255, 49, 27, 0.12);
+  background: #fff;
+}
+
+.workflowStepIcon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 49, 27, 0.06) 0%, transparent 70%);
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.workflowStep:hover .workflowStepIcon::before {
+  opacity: 1;
+}
+
+.wfIconSvg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--c-text-primary);
+  transition: stroke 0.5s ease, filter 0.5s ease;
+  overflow: visible;
+  z-index: 2;
+}
+
+.workflowStep:hover .wfIconSvg {
+  stroke: var(--c-accent);
+  filter: drop-shadow(0 0 6px rgba(255, 49, 27, 0.3));
+}
+
+.wfContent {
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  width: 100%;
+}
+
+.wfIdx {
+  font-family: var(--f-sans);
+  font-size: 0.7rem;
+  color: var(--c-accent);
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.wfContent h4 {
+  font-family: var(--f-serif);
+  font-size: 1.45rem;
+  color: var(--c-text-primary);
+  margin-bottom: 12px;
+}
+
+.wfContent p {
+  font-size: 0.95rem;
+  color: var(--c-text-secondary);
+  line-height: 1.6;
+}
+
+/* SVG animation classes */
+.wfAnimSpin {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: wf-spin 12s linear infinite;
+}
+
+.wfAnimPulse {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: wf-pulse 2.5s infinite alternate ease-in-out;
+}
+
+.wfAnimFloat1 { animation: wf-float 4s ease-in-out infinite; }
+.wfAnimFloat2 { animation: wf-float 4s ease-in-out infinite 0.2s; }
+.wfAnimFloat3 { animation: wf-float 4s ease-in-out infinite 0.4s; }
+.wfAnimGlow { animation: wf-glow 2s infinite alternate ease-in-out; }
+.wfAnimDash { animation: wf-dash 4s linear infinite; }
+.wfAnimBlink { animation: wf-blink 1.5s infinite alternate; }
+.wfAnimBlinkAlt { animation: wf-blink 1.5s infinite alternate 0.75s; }
+
+/* Heading helpers */
+.hAboutCinematic {
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.aboutPremiumLine {
+  width: 40px;
+  height: 2px;
+  background: var(--c-accent);
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.aboutPremiumLine::after {
+  content: '';
+  position: absolute;
+  left: 50px;
+  top: 0;
+  width: 12px;
+  height: 2px;
+  background: var(--c-border);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .workflowProcessContainer {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .advancedPipelineWrap {
+    display: none;
+  }
+
+  .workflowStep {
+    width: 100%;
+  }
+}

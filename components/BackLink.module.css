@@ -1,0 +1,39 @@
+.backLink {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--c-text-secondary);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--t-fast);
+  text-decoration: none;
+}
+
+.backLink::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--c-border);
+  transition: var(--t-fast);
+}
+
+.backLink:hover {
+  color: var(--c-text-primary);
+}
+
+.backLink:hover::before {
+  width: 30px;
+  background: var(--c-accent);
+}
+
+@media (max-width: 768px) {
+  .backLink {
+    top: 20px;
+    left: 20px;
+  }
+}

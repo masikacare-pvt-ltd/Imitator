@@ -1,0 +1,515 @@
+/* ==========================================================================
+   IMITATOR — Global Design System
+   ========================================================================== */
+
+:root {
+  /* Strict Palette */
+  --c-bg: #ffffff;
+  --c-text-primary: #000000;
+  --c-text-secondary: #7f7f7d;
+  --c-accent: #ff311b;
+
+  /* Depth & Surfaces */
+  --c-surface: rgba(0, 0, 0, 0.02);
+  --c-surface-hover: rgba(0, 0, 0, 0.04);
+  --c-border: rgba(0, 0, 0, 0.06);
+  --c-glass: rgba(255, 255, 255, 0.85);
+
+  /* Typography */
+  --f-serif: var(--font-playfair), 'Playfair Display', serif;
+  --f-sans: var(--font-inter), 'Inter', sans-serif;
+
+  /* Geometry */
+  --r-sm: 16px;
+  --r-md: 24px;
+  --r-lg: 32px;
+  --r-xl: 40px;
+  --r-pill: 100px;
+
+  /* Shadows */
+  --s-ambient: 0 10px 40px rgba(0, 0, 0, 0.03);
+  --s-hover: 0 20px 60px rgba(0, 0, 0, 0.06);
+  --s-nav: 0 4px 30px rgba(0, 0, 0, 0.04);
+  --s-glow: 0 0 20px rgba(255, 49, 27, 0.15);
+
+  /* Transitions */
+  --t-fast: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --t-smooth: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  --t-slow: 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ==========================================================================
+   Global Reset & Base
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-accent) var(--c-bg);
+}
+
+body {
+  background-color: var(--c-bg);
+  color: var(--c-text-primary);
+  font-family: var(--f-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  overflow-y: auto; /* Explicit: prevent iOS Safari from blocking y-scroll when overflow-x:hidden */
+  cursor: default;
+}
+
+::selection {
+  background-color: var(--c-accent);
+  color: var(--c-bg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--f-serif);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--c-text-secondary);
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ==========================================================================
+   Custom Scrollbar
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--c-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--c-accent);
+  border-radius: var(--r-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d92715;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.container-md {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.container-sm {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.container-contact {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+  .container,
+  .container-md,
+  .container-sm,
+  .container-contact {
+    padding: 0 20px;
+  }
+}
+
+/* Typography */
+.h-display {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  letter-spacing: -0.03em;
+}
+
+.h-section {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  margin-bottom: 1.5rem;
+}
+
+.h-card {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.t-lead {
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+.t-caps {
+  font-family: var(--f-sans);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--c-text-secondary);
+}
+
+.text-accent {
+  color: var(--c-accent);
+}
+
+.editorial-text {
+  font-family: var(--f-serif);
+  font-size: 2rem;
+  line-height: 1.4;
+  color: var(--c-text-primary);
+  font-style: italic;
+}
+
+/* Heading variants */
+.font-serif {
+  font-family: var(--f-serif);
+  font-size: clamp(2.5rem, 3.5vw, 4rem);
+  font-weight: 400;
+  color: var(--c-text-primary);
+}
+
+.font-sans {
+  font-family: var(--f-sans);
+  font-size: clamp(2.2rem, 3vw, 3.5rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.italic-text {
+  font-style: italic;
+}
+
+.highlight-text {
+  color: var(--c-accent);
+}
+
+/* Spacing utilities */
+.mt-16 { margin-top: 16px; }
+.mt-20 { margin-top: 20px; }
+.mt-24 { margin-top: 24px; }
+.mt-40 { margin-top: 40px; }
+.pb-40 { padding-bottom: 40px; }
+.w-100 { width: 100%; }
+
+/* Section spacing */
+section {
+  padding: 120px 0;
+  position: relative;
+}
+
+/* ==========================================================================
+   Scroll Reveal
+   ========================================================================== */
+
+/* Elements start visible. JS adds 'reveal-ready' to body before observing,
+   which enables the opacity-0 starting state. This prevents FOUC. */
+.reveal {
+  transition: opacity var(--t-slow), transform var(--t-slow);
+}
+
+body.reveal-ready .reveal:not(.active) {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.reveal.active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+
+/* ==========================================================================
+   Blur Word Animation
+   ========================================================================== */
+.blur-word {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateZ(0) scale(1.05);
+  transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+  margin-right: 0.25em;
+}
+
+.blur-word.revealed {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateZ(0) scale(1);
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(255, 49, 27, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 49, 27, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 49, 27, 0); }
+}
+
+@keyframes pulse-glow {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+  100% { transform: scale(1.1) translate(3%, 3%); opacity: 1; }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fade-in {
+  to { opacity: 1; }
+}
+
+@keyframes scroll-loop {
+  0% { top: -100%; }
+  50% { top: 100%; }
+  100% { top: 100%; }
+}
+
+@keyframes scroll-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes image-reveal {
+  to { opacity: 1; }
+}
+
+@keyframes dial-flicker {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(45deg); }
+  20% { transform: rotate(30deg); }
+  50% { transform: rotate(120deg); }
+  70% { transform: rotate(90deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes wf-spin { 100% { transform: rotate(360deg); } }
+@keyframes wf-pulse {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+@keyframes wf-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes wf-glow {
+  0% { fill: rgba(255, 49, 27, 0); }
+  100% { fill: rgba(255, 49, 27, 0.1); }
+}
+@keyframes wf-dash { to { stroke-dashoffset: -50; } }
+@keyframes wf-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+@keyframes mvSpinSlow { 100% { transform: rotate(360deg); } }
+@keyframes mvSpinFastRev { 100% { transform: rotate(-360deg); } }
+
+@keyframes photon-flow {
+  0% { stroke-dashoffset: 130; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { stroke-dashoffset: -30; opacity: 0; }
+}
+@keyframes pipeDash { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+@keyframes pipeDashRev { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 100; } }
+@keyframes wf-pulse-glow {
+  0% { transform: scale(0.85); stroke-width: 1.5px; filter: drop-shadow(0 0 0 rgba(255, 49, 27, 0)); }
+  100% { transform: scale(1.15); stroke-width: 2.5px; filter: drop-shadow(0 0 8px rgba(255, 49, 27, 0.6)); }
+}
+
+@keyframes dash-flow { to { stroke-dashoffset: 1000; } }
+@keyframes pulse-svg {
+  0% { opacity: 0.4; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes spin-conic { 100% { transform: rotate(360deg); } }
+
+@keyframes fb-cinematic-sweep {
+  0% { opacity: 0; transform: translateY(30px) scale(0.95); filter: grayscale(1) blur(10px); pointer-events: none; z-index: 0; }
+  10% { opacity: 1; transform: translateY(0) scale(1); filter: grayscale(0) blur(0); pointer-events: auto; z-index: 5; }
+  28% { opacity: 1; transform: translateY(0) scale(1.02); filter: grayscale(0) blur(0); pointer-events: auto; z-index: 5; }
+  33%, 100% { opacity: 0; transform: translateY(-30px) scale(1.05); filter: grayscale(1) blur(10px); pointer-events: none; z-index: 0; }
+}
+
+@keyframes fb-line-grow {
+  0%, 5% { width: 0px; opacity: 0; }
+  15%, 28% { width: 60px; opacity: 1; }
+  33%, 100% { width: 0px; opacity: 0; }
+}
+
+/* ==========================================================================
+   Return to Top
+   ========================================================================== */
+.return-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  mix-blend-mode: difference;
+  color: #fff;
+}
+
+.return-to-top.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.return-to-top:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+
+.rtt-circle-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.rtt-circle-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 1.5px;
+}
+
+.rtt-circle-progress {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.5px;
+  stroke-dasharray: 151;
+  stroke-dashoffset: 151;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+.rtt-arrow {
+  width: 20px;
+  height: 20px;
+  stroke: #fff;
+  stroke-width: 1.5px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.return-to-top:hover .rtt-arrow {
+  transform: translateY(-3px);
+}
+
+.return-to-top::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, 15px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.return-to-top:hover::after {
+  transform: translate(-50%, 6px);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .return-to-top {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+/* ==========================================================================
+   Services Section — JS-driven global class hooks
+   (CSS Modules hashes local classes; these globals are toggled by HomeClient)
+   ========================================================================== */
+.service-list-item {
+  /* baseline — overridden by JS inline styles on desktop */
+}
+
+/* active-service is toggled by HomeClient animateServices() */
+.active-service {
+  opacity: 1 !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* dynamic-icon active state — CSS Module handles positioning/animation.
+   The global .active class is toggled by HomeClient to show the right icon. */
+.dynamic-icon.active {
+  opacity: 1 !important;
+  transform: scale(1) rotate(0deg) !important;
+}
+
+/* nav-scrolled applied to body by HomeClient */
+body.nav-scrolled #navbar {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}

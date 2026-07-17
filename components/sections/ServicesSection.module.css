@@ -1,0 +1,444 @@
+.servicesSection {
+  background: #ffffff;
+}
+
+.servicesWrapper {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+  gap: 120px;
+}
+
+/* Sticky Left Panel */
+.servicesLeft {
+  position: sticky;
+  top: 25vh;
+  width: 40%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 60px;
+  padding-right: 0;
+  z-index: 10;
+}
+
+/* Scrollable Right Panel */
+.servicesRight {
+  width: 60%;
+  padding: 10vh 40px 40vh 0;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  position: relative;
+  z-index: 5;
+}
+
+/* Service Card */
+.serviceListItem {
+  position: relative;
+  transition:
+    transform 0.1s linear,
+    opacity 0.3s ease,
+    background-color 0.5s,
+    border 0.5s;
+  transform-origin: left center;
+  opacity: 0.2;
+  max-width: 960px;
+  padding: 32px 48px;
+  box-sizing: border-box;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.activeService,
+:global(.active-service) {
+  opacity: 1 !important;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+}
+
+/* Watermark */
+.srvWatermark {
+  position: absolute;
+  right: 10px;
+  bottom: -30px;
+  font-size: 14rem;
+  font-family: var(--f-serif);
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.015);
+  line-height: 1;
+  z-index: 0;
+  pointer-events: none;
+  transition: color 0.6s ease, transform 0.6s ease;
+}
+
+.activeService .srvWatermark,
+:global(.active-service) .srvWatermark {
+  color: rgba(0, 0, 0, 0.03);
+  transform: translateX(-10px);
+}
+
+/* HUD Corners */
+.srvHudCorner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--c-accent);
+  border-style: solid;
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tl {
+  top: 0;
+  left: 0;
+  border-width: 1.5px 0 0 1.5px;
+  transform: translate(-10px, -10px);
+}
+
+.br {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1.5px 1.5px 0;
+  transform: translate(10px, 10px);
+}
+
+.activeService .srvHudCorner,
+:global(.active-service) .srvHudCorner {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Micro Indicator */
+.srvMicroIndicator {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  font-family: var(--f-sans);
+  font-size: 0.45rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none;
+}
+
+.activeService .srvMicroIndicator,
+:global(.active-service) .srvMicroIndicator {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.pulseNode {
+  width: 4px;
+  height: 4px;
+  background: var(--c-accent);
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+
+/* Content Flex */
+.serviceContentFlex {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  position: relative;
+  z-index: 2;
+}
+
+.serviceInlineIcon {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  position: relative;
+  margin-top: 4px;
+}
+
+.serviceInlineIcon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* SVG Stroke Classes */
+.sMain {
+  stroke: rgba(0, 0, 0, 0.2);
+  stroke-width: 1.5px;
+  fill: none;
+  transition: stroke 0.5s;
+}
+
+.sAccent {
+  stroke: rgba(0, 0, 0, 0.1);
+  stroke-width: 1.5px;
+  fill: none;
+  transition: stroke 0.5s;
+}
+
+.sDash {
+  stroke: rgba(0, 0, 0, 0.15);
+  stroke-width: 1px;
+  stroke-dasharray: 2 4;
+  fill: none;
+  transition: stroke 0.5s;
+}
+
+.sDot {
+  fill: rgba(0, 0, 0, 0.15);
+  transition: fill 0.5s;
+}
+
+.activeService .sMain,
+:global(.active-service) .sMain {
+  stroke: var(--c-text-primary);
+  stroke-width: 1.5px;
+}
+
+.activeService .sAccent,
+:global(.active-service) .sAccent {
+  stroke: var(--c-accent);
+  stroke-width: 1.5px;
+}
+
+.activeService .sDash,
+:global(.active-service) .sDash {
+  stroke: var(--c-text-primary);
+  stroke-width: 1px;
+  animation: dash-flow 15s linear infinite;
+}
+
+.activeService .sDot,
+:global(.active-service) .sDot {
+  fill: var(--c-accent);
+  animation: pulse-svg 2s infinite alternate;
+}
+
+/* Dynamic Icon animations */
+.animSpin {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: wf-spin 12s linear infinite;
+}
+
+.animSpinRev {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: wf-spin 12s linear infinite reverse;
+}
+
+/* Service Title & Description */
+.serviceTitle {
+  font-family: var(--f-serif);
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  color: var(--c-text-primary);
+  transition: color 0.4s ease;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.serviceDesc {
+  font-family: var(--f-sans);
+  font-size: 1.05rem;
+  color: var(--c-text-primary); /* override global p { color: secondary } */
+  font-weight: 300;
+  line-height: 1.7;
+  padding-right: 60px;
+}
+
+.activeService .serviceTitle,
+:global(.active-service) .serviceTitle {
+  color: var(--c-accent);
+}
+
+/* Hover Dial */
+.srvDialWrap {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.8);
+  width: 80px;
+  height: 80px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.activeService:hover .srvDialWrap,
+:global(.active-service):hover .srvDialWrap {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.srvDialSvg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.dialTrack {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.05);
+  stroke-width: 1.5;
+}
+
+.dialArc {
+  fill: none;
+  stroke: var(--c-text-primary);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 4;
+}
+
+.dialInner {
+  fill: none;
+  stroke: var(--c-accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: wf-spin 10s linear infinite;
+}
+
+.dialNeedleWrap {
+  transform-origin: 50% 50%;
+  animation: dial-flicker 4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.dialNeedle {
+  stroke: var(--c-accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.dialDot {
+  fill: var(--c-bg);
+  stroke: var(--c-accent);
+  stroke-width: 2;
+}
+
+/* Dynamic Icons */
+.servicesIconContainer {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin-top: 50px;
+}
+
+.dynamicIcon {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(0.8) rotate(-15deg);
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none;
+}
+
+.dynamicIcon.active {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.dynamicIcon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 1;
+}
+
+.dynamicIcon .sMain { stroke: var(--c-text-primary); stroke-width: 1px; }
+.dynamicIcon .sAccent { stroke: var(--c-accent); stroke-width: 1.5px; }
+.dynamicIcon .sDash {
+  stroke: var(--c-text-primary);
+  stroke-width: 1px;
+  stroke-dasharray: 2 4;
+  animation: dash-flow 20s linear infinite;
+}
+.dynamicIcon .sDot {
+  fill: var(--c-accent);
+  animation: pulse-svg 2s infinite alternate;
+}
+
+/* Heading helpers */
+.hAboutCinematic {
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.aboutPremiumLine {
+  width: 40px;
+  height: 2px;
+  background: var(--c-accent);
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.aboutPremiumLine::after {
+  content: '';
+  position: absolute;
+  left: 50px;
+  top: 0;
+  width: 12px;
+  height: 2px;
+  background: var(--c-border);
+}
+
+.servicesLeadText {
+  max-width: 400px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .servicesWrapper {
+    flex-direction: column;
+    padding: 0 20px;
+    gap: 0;
+  }
+
+  .servicesLeft {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: auto;
+    padding-left: 0;
+    margin-bottom: 60px;
+  }
+
+  .servicesRight {
+    width: 100%;
+    padding: 0;
+    padding-right: 0;
+    gap: 80px;
+  }
+
+  .serviceListItem {
+    transform: none !important;
+    opacity: 1 !important;
+    margin-left: 0 !important;
+    max-width: 100%;
+  }
+
+  .srvDialWrap {
+    display: none;
+  }
+}

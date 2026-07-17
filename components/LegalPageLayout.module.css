@@ -1,0 +1,156 @@
+.ambientFlare {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 50vh;
+  background: radial-gradient(circle at top center, rgba(255, 49, 27, 0.02) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pageWatermark {
+  position: fixed;
+  top: 50%;
+  left: -15vh;
+  transform: translateY(-50%) rotate(-90deg);
+  font-family: var(--f-sans);
+  font-size: 14vh;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.015);
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+/* Hero */
+.heroBanner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.heroImageWrap {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.heroImg {
+  width: 100%;
+  height: auto;
+  max-height: 65vh;
+  object-fit: contain;
+  object-position: center;
+  margin-top: -5vh;
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  animation: fade-in 2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  opacity: 0;
+  display: block;
+}
+
+.heroMicroHud {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-family: var(--f-sans);
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  color: var(--c-text-secondary);
+  text-align: right;
+  opacity: 0;
+  animation: fade-in 2s ease 1s forwards;
+}
+
+.heroMicroHud::after {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 4px;
+  background: var(--c-accent);
+  border-radius: 50%;
+  margin-left: auto;
+  margin-top: 6px;
+  animation: pulse-dot 2s infinite;
+}
+
+.heroTextBlock {
+  margin-top: -5vh;
+  text-align: center;
+  position: relative;
+  z-index: 20;
+  margin-bottom: 80px;
+}
+
+.heroTitle {
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+.heroSubtitle {
+  font-family: var(--f-serif);
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--c-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+.fontSans {
+  font-family: var(--f-sans);
+  font-size: inherit;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.fontSerif {
+  font-family: var(--f-serif);
+  font-size: inherit;
+  font-weight: 400;
+}
+
+.italicText {
+  font-style: italic;
+}
+
+.textAccent {
+  color: var(--c-accent);
+}
+
+.premiumLine {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(180deg, var(--c-accent), transparent);
+  margin: 0 auto 30px auto;
+}
+
+/* Legal Document */
+.legalDocument {
+  position: relative;
+  z-index: 10;
+  padding-bottom: 150px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pageWatermark,
+  .heroMicroHud {
+    display: none;
+  }
+
+  .heroTitle {
+    font-size: 3rem;
+    margin-top: 20px;
+  }
+}
