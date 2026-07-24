@@ -5,9 +5,12 @@ import { useEffect } from 'react';
 export function useReturnToTop() {
   useEffect(() => {
     const btn = document.getElementById('return-to-top');
-    const progressEl = document.querySelector<SVGCircleElement>('.rtt-circle-progress');
+    if (!btn) return;
 
-    if (!btn || !progressEl) return;
+    // Scope the progress circle query to the button itself — avoids
+    // grabbing a wrong element if multiple RTT buttons exist
+    const progressEl = btn.querySelector<SVGCircleElement>('.rtt-circle-progress');
+    if (!progressEl) return;
 
     const circleLength = progressEl.getTotalLength();
     progressEl.style.strokeDasharray = String(circleLength);

@@ -85,7 +85,7 @@ export default function HeroSection() {
             <div className={styles.heroImageWrapper}>
               <Image
                 src="/hero.png"
-                alt="Elite AI Interface Presentation"
+                alt=""
                 fill
                 style={{ objectFit: 'contain', objectPosition: 'right bottom', transform: 'scale(0.9)', transformOrigin: 'right bottom' }}
                 sizes="100vw"

@@ -14,14 +14,28 @@
   mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
+/* Keyframe defined locally so CSS Modules can reference it correctly */
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 .industriesTrack {
   display: flex;
   width: max-content;
-  animation: scroll-marquee 35s linear infinite;
+  will-change: transform;
+  animation: marqueeScroll 35s linear infinite;
 }
 
 .industriesTrack:hover {
   animation-play-state: paused;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .industriesTrack {
+    animation: none;
+  }
 }
 
 .industryTag {
@@ -49,4 +63,16 @@
   color: var(--c-accent);
   box-shadow: 0 10px 30px rgba(255, 49, 27, 0.08);
   transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+  .industriesSection {
+    padding: 30px 0 60px 0;
+  }
+
+  .industryTag {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+    margin-right: 14px;
+  }
 }

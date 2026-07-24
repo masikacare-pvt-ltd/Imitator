@@ -185,3 +185,18 @@
     gap: 8px;
   }
 }
+
+@media (max-width: 480px) {
+  .legalH {
+    font-size: 1.4rem;
+  }
+
+  .legalP {
+    font-size: 0.95rem;
+  }
+
+  .highlightBox,
+  .paymentBox {
+    padding: 20px 16px;
+  }
+}

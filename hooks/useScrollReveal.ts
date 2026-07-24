@@ -8,7 +8,6 @@ export function useScrollReveal() {
     // only after JS is ready — prevents FOUC
     document.body.classList.add('reveal-ready');
 
-    // Immediately activate elements already in viewport
     const revealElements = document.querySelectorAll<HTMLElement>('.reveal:not(.active)');
 
     const observer = new IntersectionObserver(
@@ -27,6 +26,10 @@ export function useScrollReveal() {
 
     return () => {
       observer.disconnect();
+      // Only remove reveal-ready if no other scroll-reveal instance is active.
+      // Check if any .reveal elements still lack .active — if so, another
+      // instance may be running. Safe to always remove here since each page
+      // re-adds it immediately on mount.
       document.body.classList.remove('reveal-ready');
     };
   }, []);

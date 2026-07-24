@@ -431,14 +431,97 @@
     gap: 80px;
   }
 
+  /* On tablet/mobile, JS curve animation is disabled — force all cards fully visible */
   .serviceListItem {
     transform: none !important;
     opacity: 1 !important;
     margin-left: 0 !important;
     max-width: 100%;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: var(--s-ambient);
   }
 
   .srvDialWrap {
     display: none;
+  }
+}
+
+/* On mobile/tablet all service icons should be fully visible */
+@media (max-width: 1024px) {
+  .serviceListItem .sMain {
+    stroke: var(--c-text-primary);
+    stroke-width: 1.5px;
+  }
+
+  .serviceListItem .sAccent {
+    stroke: var(--c-accent);
+    stroke-width: 1.5px;
+  }
+
+  .serviceListItem .sDash {
+    stroke: var(--c-text-primary);
+    stroke-width: 1px;
+  }
+
+  .serviceListItem .sDot {
+    fill: var(--c-accent);
+  }
+
+  .serviceListItem .serviceTitle {
+    color: var(--c-text-primary);
+  }
+
+  .serviceListItem .srvHudCorner {
+    display: none;
+  }
+
+  .serviceListItem .srvMicroIndicator {
+    display: none;
+  }
+}
+
+@keyframes pulse-dot {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 49, 27, 0.4); }
+  70%  { box-shadow: 0 0 0 10px rgba(255, 49, 27, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 49, 27, 0); }
+}
+@keyframes wf-spin  { 100% { transform: rotate(360deg); } }
+@keyframes dial-flicker {
+  0%   { transform: rotate(0deg); }
+  10%  { transform: rotate(45deg); }
+  20%  { transform: rotate(30deg); }
+  50%  { transform: rotate(120deg); }
+  70%  { transform: rotate(90deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes dash-flow { to { stroke-dashoffset: 1000; } }
+@keyframes pulse-svg {
+  0%   { opacity: 0.4; transform: scale(0.95); }
+  100% { opacity: 1;   transform: scale(1.05); }
+}
+
+@media (max-width: 480px) {
+  .serviceListItem {
+    padding: 24px 20px;
+  }
+
+  .serviceContentFlex {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .serviceInlineIcon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .serviceTitle {
+    font-size: 1.5rem;
+  }
+
+  .serviceDesc {
+    padding-right: 0;
+    font-size: 0.95rem;
   }
 }

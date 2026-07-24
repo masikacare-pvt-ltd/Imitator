@@ -48,8 +48,8 @@ export default function FaqSection() {
       <div className={styles.faqWrapper}>
         {faqs.map((faq, i) => (
           <div
-            key={i}
-            className={`${styles.faqItem} reveal${i > 0 ? ` delay-${Math.min(i, 3)}` : ''} ${activeIndex === i ? styles.faqActive : ''}`}
+            key={faq.q}
+            className={`${styles.faqItem} ${activeIndex === i ? styles.faqActive : ''}`}
           >
             <button
               className={styles.faqHeader}

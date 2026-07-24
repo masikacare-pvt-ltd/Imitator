@@ -76,13 +76,14 @@ const industries = [
   },
 ];
 
-// Duplicate for seamless loop
+// Duplicated once at module level for seamless infinite marquee loop
 const allIndustries = [...industries, ...industries];
 
 export default function IndustriesSection() {
   return (
     <section id="industries" className={styles.industriesSection} aria-label="Industries we serve">
-      <div className={`${styles.marqueeContainer} reveal delay-1`}>
+      {/* No reveal wrapper — the marquee must not be hidden/transformed by scroll reveal */}
+      <div className={styles.marqueeContainer}>
         <div className={styles.industriesTrack} aria-hidden="true">
           {allIndustries.map((industry, idx) => (
             <div key={`${industry.name}-${idx}`} className={styles.industryTag}>

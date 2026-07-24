@@ -27,11 +27,10 @@ export default function ContactPage() {
           <div className={styles.contactImgWrap}>
             <Image
               src="/contact.jpg"
-              alt="Cinematic Abstract Transmission"
+              alt=""
               fill
               style={{ objectFit: 'contain', objectPosition: 'center' }}
               className={styles.contactImg}
-              priority
             />
           </div>
         </section>
@@ -78,7 +77,7 @@ export default function ContactPage() {
             <div className={`${styles.fCorner} ${styles.fBl}`} aria-hidden="true" />
             <div className={`${styles.fCorner} ${styles.fBr}`} aria-hidden="true" />
 
-            <form action="#" method="POST" id="contactForm" noValidate>
+            <form id="contactForm" noValidate>
               <div className={`${styles.formGroup} reveal delay-3`}>
                 <input
                   type="text"
@@ -87,7 +86,7 @@ export default function ContactPage() {
                   className={styles.formInput}
                   placeholder=" "
                   required
-                  autoComplete="off"
+                  autoComplete="name"
                 />
                 <label htmlFor="name" className={styles.formLabel}>
                   Identifier (Name)
@@ -102,7 +101,7 @@ export default function ContactPage() {
                   className={styles.formInput}
                   placeholder=" "
                   required
-                  autoComplete="off"
+                  autoComplete="organization"
                 />
                 <label htmlFor="entity" className={styles.formLabel}>
                   Enterprise / Entity
@@ -117,7 +116,7 @@ export default function ContactPage() {
                   className={styles.formInput}
                   placeholder=" "
                   required
-                  autoComplete="off"
+                  autoComplete="email"
                 />
                 <label htmlFor="email" className={styles.formLabel}>
                   Return Frequency (Email)

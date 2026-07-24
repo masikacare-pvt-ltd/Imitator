@@ -38,24 +38,48 @@ export default function ContactClient() {
     };
   }, []);
 
-  // Form submit handler
+  // Form submit handler — mailto fallback until backend endpoint exists
   useEffect(() => {
     const form = document.getElementById('contactForm') as HTMLFormElement | null;
     if (!form) return;
 
     const handleSubmit = (e: Event) => {
       e.preventDefault();
-      const btnText = form.querySelector<HTMLElement>('.submit-btn-text, [class*="submitBtnText"]');
-      if (!btnText) return;
-      const original = btnText.innerText;
-      btnText.innerText = 'TRANSMITTING...';
-      setTimeout(() => {
-        btnText.innerText = 'LINK ESTABLISHED';
-        form.reset();
+
+      const nameInput = form.querySelector<HTMLInputElement>('#name');
+      const emailInput = form.querySelector<HTMLInputElement>('#email');
+      const entityInput = form.querySelector<HTMLInputElement>('#entity');
+      const messageInput = form.querySelector<HTMLTextAreaElement>('#message');
+      const btnText = form.querySelector<HTMLElement>('[class*="submitBtnText"]');
+
+      // Basic validation
+      if (!nameInput?.value.trim() || !emailInput?.value.trim() || !messageInput?.value.trim()) {
+        if (btnText) {
+          const original = btnText.innerText;
+          btnText.innerText = 'FILL ALL FIELDS';
+          setTimeout(() => { btnText.innerText = original; }, 2000);
+        }
+        return;
+      }
+
+      const subject = encodeURIComponent(`[IMITATOR Inquiry] ${nameInput.value.trim()} — ${entityInput?.value.trim() ?? ''}`);
+      const body = encodeURIComponent(
+        `Name: ${nameInput.value.trim()}\nEnterprise: ${entityInput?.value.trim() ?? 'N/A'}\nEmail: ${emailInput.value.trim()}\n\nMessage:\n${messageInput.value.trim()}`
+      );
+
+      if (btnText) {
+        const original = btnText.innerText;
+        btnText.innerText = 'TRANSMITTING...';
         setTimeout(() => {
-          btnText.innerText = original;
-        }, 3000);
-      }, 1500);
+          window.location.href = `mailto:imitator.in@gmail.com?subject=${subject}&body=${body}`;
+          form.reset();
+          btnText.innerText = 'LINK ESTABLISHED';
+          setTimeout(() => { btnText.innerText = original; }, 3000);
+        }, 600);
+      } else {
+        window.location.href = `mailto:imitator.in@gmail.com?subject=${subject}&body=${body}`;
+        form.reset();
+      }
     };
 
     form.addEventListener('submit', handleSubmit);

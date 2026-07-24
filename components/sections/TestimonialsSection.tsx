@@ -37,7 +37,7 @@ export default function TestimonialsSection() {
       <div className={styles.feedbackHologram} role="region" aria-label="Testimonials">
         {testimonials.map((t, i) => (
           <div
-            key={i}
+            key={t.author}
             className={styles.fbCard}
             style={{ animationDelay: `${i * 7}s` }}
           >
