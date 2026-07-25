@@ -79,6 +79,8 @@
   grid-template-columns: repeat(3, max-content);
   gap: 16px;
   margin-top: 32px;
+  /* auto-flow wraps extra icons into the next row */
+  grid-auto-rows: auto;
 }
 
 .socialBtn {
