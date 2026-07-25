@@ -231,7 +231,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden;
+  overflow: visible;
   pointer-events: none;
   z-index: 0;
 }
@@ -255,11 +255,11 @@
   z-index: 0;
 }
 
-/* Image positioning — desktop: right bottom aligned; mobile: centered */
+/* Image positioning — exactly matching original reference */
 .heroImg {
   object-fit: contain;
   object-position: right bottom;
-  transform: scale(0.9);
+  transform: scale(1.10);
   transform-origin: right bottom;
 }
 
@@ -518,17 +518,21 @@
   /* Show the simple centered mobile image */
   .heroImgMobileWrap {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     margin-top: 16px;
+    overflow: visible;
   }
 
+  /* Image is 1778x885 (2:1 ratio) — larger and left-center aligned */
   .heroImgMobile {
     width: 100%;
-    max-width: 480px;
+    max-width: 100%;
     height: auto;
     object-fit: contain;
+    transform: scale(1.35);
+    transform-origin: left center;
   }
 
   /* Push Explore indicator below the image by accounting for image height */
