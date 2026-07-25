@@ -71,13 +71,13 @@ export default function ContactClient() {
         const original = btnText.innerText;
         btnText.innerText = 'TRANSMITTING...';
         setTimeout(() => {
-          window.location.href = `mailto:imitator.in@gmail.com?subject=${subject}&body=${body}`;
+          window.open(`mailto:imitator.in@gmail.com?subject=${subject}&body=${body}`, '_self');
           form.reset();
-          btnText.innerText = 'LINK ESTABLISHED';
+          btnText.innerText = 'LINK ESTABLISHED ✓';
           setTimeout(() => { btnText.innerText = original; }, 3000);
         }, 600);
       } else {
-        window.location.href = `mailto:imitator.in@gmail.com?subject=${subject}&body=${body}`;
+        window.open(`mailto:imitator.in@gmail.com?subject=${subject}&body=${body}`, '_self');
         form.reset();
       }
     };
