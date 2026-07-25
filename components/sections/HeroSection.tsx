@@ -77,26 +77,50 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Visual */}
-        <div className={`${styles.heroVisualClip} reveal delay-1`} aria-hidden="true">
-          <div className={styles.heroVisual}>
-            <div className={styles.cineLineH} />
-            <div className={styles.cineLineV} />
-            <div className={styles.heroImageWrapper}>
-              <Image
-                src="/hero.png"
-                alt=""
-                fill
-                style={{ objectFit: 'contain', objectPosition: 'right bottom', transform: 'scale(0.9)', transformOrigin: 'right bottom' }}
-                sizes="100vw"
-                priority
-              />
+        {/* Visual + mobile Explore indicator */}
+        <div className={styles.heroVisualCol}>
+          {/* Desktop visual — full-bleed absolute layout */}
+          <div className={`${styles.heroVisualClip} reveal delay-1`} aria-hidden="true">
+            <div className={styles.heroVisual}>
+              <div className={styles.cineLineH} />
+              <div className={styles.cineLineV} />
+              <div className={styles.heroImageWrapper}>
+                <Image
+                  src="/hero.png"
+                  alt=""
+                  fill
+                  className={styles.heroImg}
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  priority
+                />
+              </div>
             </div>
           </div>
+
+          {/* Mobile-only image — simple centered block, no fill/absolute tricks */}
+          <div className={styles.heroImgMobileWrap} aria-hidden="true">
+            <Image
+              src="/hero.png"
+              alt=""
+              width={600}
+              height={420}
+              className={styles.heroImgMobile}
+              sizes="100vw"
+              priority
+            />
+          </div>
+
+          {/* Mobile-only Explore indicator — sits below image, centered */}
+          <Link href="#about" className={styles.heroScrollDownMobile} aria-label="Scroll down">
+            <span className={styles.scrollDownText}>Explore</span>
+            <div className={styles.scrollDownTrack}>
+              <div className={styles.scrollDownThumb} />
+            </div>
+          </Link>
         </div>
       </div>
 
-      {/* Scroll down indicator */}
+      {/* Scroll down indicator — desktop only */}
       <Link href="#about" className={styles.heroScrollDown} aria-label="Scroll down">
         <span className={styles.scrollDownText}>Explore</span>
         <div className={styles.scrollDownTrack}>

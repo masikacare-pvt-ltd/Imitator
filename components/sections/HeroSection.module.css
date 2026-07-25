@@ -193,6 +193,9 @@
   grid-template-columns: 1fr 1.2fr;
   gap: 60px;
   align-items: center;
+  position: relative;
+  z-index: 1;
+  width: 100%;
 }
 
 .heroContent {
@@ -250,6 +253,14 @@
   width: 100%;
   height: 100%;
   z-index: 0;
+}
+
+/* Image positioning — desktop: right bottom aligned; mobile: centered */
+.heroImg {
+  object-fit: contain;
+  object-position: right bottom;
+  transform: scale(0.9);
+  transform-origin: right bottom;
 }
 
 .cineLineH {
@@ -439,6 +450,21 @@
   opacity: 1;
 }
 
+/* Mobile-only Explore — hidden on desktop */
+.heroScrollDownMobile {
+  display: none;
+}
+
+/* Mobile-only image — hidden on desktop */
+.heroImgMobileWrap {
+  display: none;
+}
+
+/* Column wrapper for visual + mobile explore */
+.heroVisualCol {
+  display: contents; /* transparent on desktop — acts as if children are direct grid children */
+}
+
 .scrollDownText {
   font-family: var(--f-sans);
   font-size: 0.5rem;
@@ -475,10 +501,79 @@
   .hero {
     padding-top: 160px;
     text-align: center;
+    /* Allow hero to grow taller to accommodate image below content */
+    min-height: auto;
+    padding-bottom: 0;
   }
 
   .heroBtns {
     justify-content: center;
+  }
+
+  /* Hide the desktop full-bleed visual on mobile */
+  .heroVisualClip {
+    display: none;
+  }
+
+  /* Show the simple centered mobile image */
+  .heroImgMobileWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .heroImgMobile {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Push Explore indicator below the image by accounting for image height */
+  .heroScrollDown {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin-top: 24px;
+    margin-bottom: 32px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* On mobile: heroVisualCol is a real flex column containing image + Explore */
+  .heroVisualCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Hide the desktop absolute Explore */
+  .heroScrollDown {
+    display: none;
+  }
+
+  /* Show the mobile Explore below the image */
+  .heroScrollDownMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0.6;
+    transition: opacity var(--t-fast);
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 24px;
+    margin-bottom: 32px;
+  }
+
+  .heroScrollDownMobile:hover {
+    opacity: 1;
   }
 }
 
@@ -490,7 +585,8 @@
   .heroMicroText,
   .heroFrame,
   .heroStatusTag,
-  .heroDataStream {
+  .heroDataStream,
+  .heroCrosshairs {
     display: none;
   }
 }
