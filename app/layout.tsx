@@ -80,7 +80,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfairDisplay.variable}`} suppressHydrationWarning>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <div style={{ overflowX: 'clip', maxWidth: '100%', width: '100%', position: 'relative' }}>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

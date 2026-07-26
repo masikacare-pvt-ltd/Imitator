@@ -339,7 +339,7 @@
   .navWrapper {
     padding: 0 16px;
     justify-content: center;
-    width: 100vw;
+    width: 100%;
   }
   .navbar {
     padding: 8px 16px !important;
