@@ -93,10 +93,31 @@ export default function HeroSection() {
               />
             </div>
           </div>
+
+          {/* Mobile-only image — simple centered block, no fill/absolute tricks */}
+          <div className={styles.heroImgMobileWrap} aria-hidden="true">
+            <Image
+              src="/hero.png"
+              alt=""
+              width={600}
+              height={420}
+              className={styles.heroImgMobile}
+              sizes="100vw"
+              priority
+            />
+          </div>
+
+          {/* Mobile-only Explore indicator — sits below image, centered */}
+          <Link href="#about" className={styles.heroScrollDownMobile} aria-label="Scroll down">
+            <span className={styles.scrollDownText}>Explore</span>
+            <div className={styles.scrollDownTrack}>
+              <div className={styles.scrollDownThumb} />
+            </div>
+          </Link>
         </div>
       </div>
 
-      {/* Scroll down indicator */}
+      {/* Scroll down indicator — desktop only */}
       <Link href="#about" className={styles.heroScrollDown} aria-label="Scroll down">
         <span className={styles.scrollDownText}>Explore</span>
         <div className={styles.scrollDownTrack}>

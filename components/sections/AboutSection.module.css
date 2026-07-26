@@ -207,7 +207,7 @@
 @media (max-width: 768px) {
   .aboutSection {
     padding-top: 60px;
-    padding-bottom: 60px;
+    padding-bottom: 40px;
     margin-top: 20px;
   }
 
@@ -216,4 +216,16 @@
   .aboutDataStream {
     display: none;
   }
+}
+
+@media (max-width: 480px) {
+  .aboutSection {
+    padding-top: 40px;
+    padding-bottom: 30px;
+  }
+}
+
+@keyframes pulse-glow {
+  0%   { transform: scale(1) translate(0, 0); opacity: 0.5; }
+  100% { transform: scale(1.1) translate(3%, 3%); opacity: 1; }
 }

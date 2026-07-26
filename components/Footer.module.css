@@ -79,6 +79,8 @@
   grid-template-columns: repeat(3, max-content);
   gap: 16px;
   margin-top: 32px;
+  /* auto-flow wraps extra icons into the next row */
+  grid-auto-rows: auto;
 }
 
 .socialBtn {
@@ -246,6 +248,13 @@
 }
 
 @media (max-width: 768px) {
+  .footerDark {
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    padding: 80px 24px 48px;
+    margin-top: 80px;
+  }
+
   .footerGrid {
     grid-template-columns: 1fr;
   }
@@ -256,3 +265,24 @@
     text-align: center;
   }
 }
+
+@media (max-width: 480px) {
+  .footerDark {
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding: 60px 20px 40px;
+    margin-top: 60px;
+  }
+
+  .footerSocials {
+    grid-template-columns: repeat(3, max-content);
+  }
+
+  .footerLegalLinks {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+}
+
+@keyframes spin-conic { 100% { transform: rotate(360deg); } }

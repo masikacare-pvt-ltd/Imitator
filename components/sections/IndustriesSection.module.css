@@ -17,14 +17,28 @@
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
+/* Keyframe defined locally so CSS Modules can reference it correctly */
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 .industriesTrack {
   display: flex;
   width: max-content;
-  animation: scroll-marquee 35s linear infinite;
+  will-change: transform;
+  animation: marqueeScroll 35s linear infinite;
 }
 
 .industriesTrack:hover {
   animation-play-state: paused;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .industriesTrack {
+    animation: none;
+  }
 }
 
 .industryTag {

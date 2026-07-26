@@ -5,24 +5,75 @@
   overflow: hidden;
 }
 
+/* Keyframes defined locally — CSS Modules cannot reference globals.css keyframes */
+@keyframes fbCinematicSweep {
+  0%   { opacity: 0; transform: translateY(30px) scale(0.95); filter: grayscale(1) blur(10px); pointer-events: none; z-index: 0; }
+  10%  { opacity: 1; transform: translateY(0) scale(1); filter: grayscale(0) blur(0); pointer-events: auto; z-index: 5; }
+  28%  { opacity: 1; transform: translateY(0) scale(1.02); filter: grayscale(0) blur(0); pointer-events: auto; z-index: 5; }
+  33%, 100% { opacity: 0; transform: translateY(-30px) scale(1.05); filter: grayscale(1) blur(10px); pointer-events: none; z-index: 0; }
+}
+
+@keyframes fbLineGrow {
+  0%, 5%      { width: 0px; opacity: 0; }
+  15%, 28%    { width: 60px; opacity: 1; }
+  33%, 100%   { width: 0px; opacity: 0; }
+}
+
 .feedbackHologram {
   position: relative;
-  height: 400px;
+  min-height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 60px;
+  padding-bottom: 20px;
+}
+
+.feedbackHologram::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 380px;
+  pointer-events: none;
 }
 
 .fbCard {
   position: absolute;
+  width: 100%;
   max-width: 900px;
   text-align: center;
   opacity: 0;
   transform: translateY(20px) scale(0.98);
   filter: grayscale(1) blur(5px);
-  animation: fb-cinematic-sweep 21s infinite cubic-bezier(0.19, 1, 0.22, 1);
+  animation: fbCinematicSweep 21s infinite cubic-bezier(0.19, 1, 0.22, 1);
   padding: 0 40px;
+  word-wrap: break-word;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fbCard {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+    position: relative;
+    margin-bottom: 60px;
+  }
+
+  .fbAuthorLine {
+    width: 60px;
+    opacity: 1;
+  }
+
+  .feedbackHologram {
+    flex-direction: column;
+    gap: 60px;
+    min-height: auto;
+  }
+
+  .feedbackHologram::after {
+    display: none;
+  }
 }
 
 .fbQuoteMark {
@@ -41,11 +92,16 @@
   line-height: 1.3;
   color: var(--c-text-primary);
   margin-bottom: 32px;
-  background: linear-gradient(90deg, var(--c-text-primary) 0%, var(--c-text-secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   position: relative;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .fbQuote {
+    background: linear-gradient(90deg, var(--c-text-primary) 0%, var(--c-text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 .fbAuthorWrap {
@@ -60,7 +116,7 @@
   height: 1px;
   background: var(--c-accent);
   margin-bottom: 16px;
-  animation: fb-line-grow 21s infinite cubic-bezier(0.19, 1, 0.22, 1);
+  animation: fbLineGrow 21s infinite cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .fbAuthor {
@@ -106,8 +162,8 @@
 }
 
 @media (max-width: 768px) {
-  .feedbackHologram {
-    height: 500px;
+  .feedbackHologram::after {
+    height: 480px;
   }
 
   .fbCard {

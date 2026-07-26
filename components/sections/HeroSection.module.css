@@ -193,6 +193,9 @@
   grid-template-columns: 1fr 1.2fr;
   gap: 60px;
   align-items: center;
+  position: relative;
+  z-index: 1;
+  width: 100%;
 }
 
 .heroContent {
@@ -227,7 +230,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden;
+  overflow: visible;
   pointer-events: none;
   z-index: 0;
 }
@@ -446,6 +449,21 @@
   opacity: 1;
 }
 
+/* Mobile-only Explore — hidden on desktop */
+.heroScrollDownMobile {
+  display: none;
+}
+
+/* Mobile-only image — hidden on desktop */
+.heroImgMobileWrap {
+  display: none;
+}
+
+/* Column wrapper for visual + mobile explore */
+.heroVisualCol {
+  display: contents; /* transparent on desktop — acts as if children are direct grid children */
+}
+
 .scrollDownText {
   font-family: var(--f-sans);
   font-size: 0.5rem;
@@ -572,7 +590,8 @@
   .heroMicroText,
   .heroFrame,
   .heroStatusTag,
-  .heroDataStream {
+  .heroDataStream,
+  .heroCrosshairs {
     display: none;
   }
 

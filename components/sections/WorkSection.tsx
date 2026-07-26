@@ -33,14 +33,15 @@ export default function WorkSection() {
       <div className={`container ${styles.workGrid} reveal delay-1`}>
         {projects.map((proj) => (
           <div key={proj.id} className={`${styles.workItem} ${spanClass[proj.span]}`}>
-            <Image
-              src={proj.img}
-              alt={proj.title}
-              fill
-              className={styles.workImg}
-              style={{ objectFit: 'cover' }}
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            />
+            <div className={styles.workImgWrapper}>
+              <Image
+                src={proj.img}
+                alt={proj.title}
+                fill
+                className={styles.workImg}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              />
+            </div>
             <div className={styles.workOverlay}>
               <span className={styles.workCat}>{proj.cat}</span>
               <h3 className={styles.workTitle}>{proj.title}</h3>

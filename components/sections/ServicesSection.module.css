@@ -431,11 +431,15 @@
     gap: 80px;
   }
 
+  /* On tablet/mobile, JS curve animation is disabled — force all cards fully visible */
   .serviceListItem {
     transform: none !important;
     opacity: 1 !important;
     margin-left: 0 !important;
     max-width: 100%;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: var(--s-ambient);
   }
 
   .srvDialWrap {

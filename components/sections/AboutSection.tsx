@@ -26,7 +26,7 @@ export default function AboutSection() {
           <div className={styles.aboutImgInner}>
             <Image
               src="/about.png"
-              alt="Architectural Intelligence Visualization"
+              alt=""
               fill
               style={{ objectFit: 'contain', mixBlendMode: 'multiply' }}
               sizes="(max-width: 1024px) 100vw, 50vw"

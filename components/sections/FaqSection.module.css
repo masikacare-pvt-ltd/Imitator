@@ -1,5 +1,5 @@
 .faqSectionWrap {
-  margin-top: 150px;
+  margin-top: 60px;
   margin-bottom: 80px;
 }
 
@@ -10,7 +10,6 @@
 
 .faqItem {
   border-bottom: 1px solid var(--c-border);
-  overflow: hidden;
 }
 
 .faqHeader {
@@ -19,7 +18,6 @@
   padding: 32px 0;
   background: none;
   border: none;
-  outline: none;
   -webkit-tap-highlight-color: transparent;
   font-family: var(--f-serif);
   font-size: 1.5rem;
@@ -29,11 +27,17 @@
   justify-content: space-between;
   align-items: center;
   transition: color var(--t-fast);
+  /* Do not suppress outline globally — use :focus-visible instead */
+}
+
+.faqHeader:focus {
+  outline: none;
 }
 
 .faqHeader:focus-visible {
   outline: 2px solid var(--c-accent);
   outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .faqItem:hover .faqHeader {
@@ -130,8 +134,25 @@
 
 @media (max-width: 768px) {
   .faqSectionWrap {
-    margin-top: 100px;
-    margin-bottom: 80px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .faqHeader {
+    font-size: 1.15rem;
+    padding: 24px 0;
+  }
+
+  .faqIconSvg {
+    width: 20px;
+    height: 20px;
+    margin-left: 12px;
+  }
+
+  .faqContentInner p {
+    font-size: 0.95rem;
   }
   
   .faqHeader {

@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMagneticEffect } from '@/hooks/useMagneticEffect';
+import { useRef } from 'react';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {

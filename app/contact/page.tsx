@@ -28,11 +28,10 @@ export default function ContactPage() {
           <div className={styles.contactImgWrap}>
             <Image
               src="/contact.jpg"
-              alt="Cinematic Abstract Transmission"
+              alt=""
               fill
               style={{ objectFit: 'contain', objectPosition: 'center' }}
               className={styles.contactImg}
-              priority
             />
           </div>
         </section>

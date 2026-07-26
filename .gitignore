@@ -54,3 +54,6 @@ coverage/
 # Misc
 .cache/
 .parcel-cache/
+
+# Audit tool output
+.audit/
