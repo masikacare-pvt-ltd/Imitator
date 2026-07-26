@@ -113,4 +113,10 @@
   .fbCard {
     padding: 0 20px;
   }
+
+  .fbQuote {
+    font-size: clamp(1.25rem, 4vw, 1.8rem);
+    margin-bottom: 20px;
+  }
 }
+

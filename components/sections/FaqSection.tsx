@@ -35,21 +35,27 @@ export default function FaqSection() {
 
   return (
     <section className={`container ${styles.faqSectionWrap}`}>
-      <div className="reveal" style={{ textAlign: 'left', marginBottom: '60px' }}>
+      <div className="reveal" style={{ textAlign: 'center', marginBottom: '60px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <span className="t-caps">Inquiries</span>
         <h2 className={`${styles.hAboutCinematic} mt-16`}>
           <span className="font-serif italic-text">Intelligence,</span>
           <br />
           <span className="font-sans highlight-text">Clarified.</span>
         </h2>
-        <div className={styles.aboutPremiumLine} />
+        <div className={styles.aboutPremiumLine} style={{ margin: '0 auto 32px' }} />
       </div>
 
       <div className={styles.faqWrapper}>
         {faqs.map((faq, i) => (
           <div
             key={i}
-            className={`${styles.faqItem} reveal${i > 0 ? ` delay-${Math.min(i, 3)}` : ''} ${activeIndex === i ? styles.faqActive : ''}`}
+            className={[
+              styles.faqItem,
+              'reveal',
+              'active',
+              i > 0 ? `delay-${Math.min(i, 3)}` : '',
+              activeIndex === i ? styles.faqActive : '',
+            ].filter(Boolean).join(' ')}
           >
             <button
               className={styles.faqHeader}

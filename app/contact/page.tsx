@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import BackLink from '@/components/BackLink';
 import ReturnToTop from '@/components/ReturnToTop';
+import ContactForm from '@/components/ContactForm';
 import ContactClient from './ContactClient';
 import styles from './contact.module.css';
 
@@ -72,87 +73,7 @@ export default function ContactPage() {
           </div>
 
           {/* Right: Form */}
-          <div className={`${styles.commFormWrapper} reveal delay-2`}>
-            <div className={`${styles.fCorner} ${styles.fTl}`} aria-hidden="true" />
-            <div className={`${styles.fCorner} ${styles.fTr}`} aria-hidden="true" />
-            <div className={`${styles.fCorner} ${styles.fBl}`} aria-hidden="true" />
-            <div className={`${styles.fCorner} ${styles.fBr}`} aria-hidden="true" />
-
-            <form action="#" method="POST" id="contactForm" noValidate>
-              <div className={`${styles.formGroup} reveal delay-3`}>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className={styles.formInput}
-                  placeholder=" "
-                  required
-                  autoComplete="off"
-                />
-                <label htmlFor="name" className={styles.formLabel}>
-                  Identifier (Name)
-                </label>
-              </div>
-
-              <div className={`${styles.formGroup} reveal delay-3`}>
-                <input
-                  type="text"
-                  id="entity"
-                  name="entity"
-                  className={styles.formInput}
-                  placeholder=" "
-                  required
-                  autoComplete="off"
-                />
-                <label htmlFor="entity" className={styles.formLabel}>
-                  Enterprise / Entity
-                </label>
-              </div>
-
-              <div className={`${styles.formGroup} reveal delay-3`}>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className={styles.formInput}
-                  placeholder=" "
-                  required
-                  autoComplete="off"
-                />
-                <label htmlFor="email" className={styles.formLabel}>
-                  Return Frequency (Email)
-                </label>
-              </div>
-
-              <div className={`${styles.formGroup} reveal delay-3`}>
-                <textarea
-                  id="message"
-                  name="message"
-                  className={`${styles.formInput} ${styles.formTextarea}`}
-                  placeholder=" "
-                  required
-                  autoComplete="off"
-                />
-                <label htmlFor="message" className={styles.formLabel}>
-                  Transmission Data (Message)
-                </label>
-              </div>
-
-              <div className="reveal delay-3">
-                <button type="submit" className={`${styles.submitBtn} magnetic-submit`}>
-                  <span className={styles.submitBtnText}>Initialize Link</span>
-                  <svg
-                    className={styles.submitIcon}
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </button>
-              </div>
-            </form>
-          </div>
+          <ContactForm />
         </section>
       </main>
 
@@ -161,3 +82,4 @@ export default function ContactPage() {
     </>
   );
 }
+

@@ -4,8 +4,8 @@
 }
 
 .faqWrapper {
-  max-width: 900px;
-  margin: 0;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .faqItem {
@@ -132,5 +132,10 @@
   .faqSectionWrap {
     margin-top: 100px;
     margin-bottom: 80px;
+  }
+  
+  .faqHeader {
+    font-size: 1.25rem;
+    padding: 24px 0;
   }
 }

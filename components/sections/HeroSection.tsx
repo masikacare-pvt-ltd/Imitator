@@ -87,8 +87,8 @@ export default function HeroSection() {
                 src="/hero.png"
                 alt="Elite AI Interface Presentation"
                 fill
-                style={{ objectFit: 'contain', objectPosition: 'right bottom', transform: 'scale(0.9)', transformOrigin: 'right bottom' }}
-                sizes="100vw"
+                className={styles.heroImg}
+                sizes="(max-width: 1024px) 100vw, 55vw"
                 priority
               />
             </div>

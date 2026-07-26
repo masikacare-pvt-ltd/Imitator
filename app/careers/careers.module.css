@@ -372,4 +372,9 @@
   .roleRow:hover {
     padding-left: 16px;
   }
+
+  .statusBadge {
+    justify-self: start;
+  }
 }
+

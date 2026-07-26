@@ -134,3 +134,16 @@
     grid-row: span 1;
   }
 }
+
+@media (hover: none) {
+  .workOverlay {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.15) 60%, transparent 100%);
+  }
+
+  .workCat,
+  .workTitle {
+    transform: translateY(0);
+  }
+}
+
